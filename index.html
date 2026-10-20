@@ -4,1067 +4,1186 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#070713">
-<meta name="description" content="Piyush AI World - Explore AI chat, script writing, image creation and video tools.">
+<meta name="description" content="Piyush AI World - Your creative AI studio">
 <title>Piyush AI World | Create Without Limits</title>
 
 <style>
 :root {
-    --bg: #070713;
-    --panel: #111126;
-    --panel2: #171731;
-    --cyan: #00e5ff;
-    --purple: #9d4edd;
-    --pink: #ff4ecd;
-    --text: #f7f7ff;
-    --muted: #a9aac5;
-    --border: rgba(255,255,255,.12);
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 90px;
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    overflow-x: hidden;
-    line-height: 1.6;
-}
-
-button, input, textarea, select {
-    font: inherit;
-}
-
-button, a {
-    -webkit-tap-highlight-color: transparent;
-}
-
-button {
-    cursor: pointer;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-.container {
-    width: min(1200px, 92%);
-    margin: auto;
-}
-
-.gradient {
-    background: linear-gradient(90deg, var(--cyan), var(--purple), var(--pink));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-}
-
-.glow {
-    color: var(--cyan);
-    text-shadow: 0 0 20px #00e5ff55;
-}
-
-/* BACKGROUND EFFECTS */
-
-.background-effects {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    overflow: hidden;
-    z-index: -1;
-}
-
-.orb {
-    position: absolute;
-    width: 280px;
-    height: 280px;
-    border-radius: 50%;
-    filter: blur(90px);
-    opacity: .17;
-    animation: floatOrb 12s ease-in-out infinite alternate;
-}
-
-.orb.one {
-    background: #7c3aed;
-    top: 5%;
-    left: -100px;
-}
-
-.orb.two {
-    background: #00d9ff;
-    top: 50%;
-    right: -130px;
-    animation-delay: -5s;
-}
-
-.orb.three {
-    background: #ff29b8;
-    bottom: -150px;
-    left: 35%;
-    animation-delay: -8s;
-}
-
-@keyframes floatOrb {
-    from { transform: translate3d(0,0,0) scale(1); }
-    to { transform: translate3d(80px,-60px,0) scale(1.3); }
-}
-
-/* NAVBAR */
-
-header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(7,7,19,.88);
-    backdrop-filter: blur(18px);
-    border-bottom: 1px solid var(--border);
-}
-
-.navbar {
-    min-height: 75px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 18px;
-}
-
-.brand {
-    font-size: 23px;
-    font-weight: 900;
-    letter-spacing: -.7px;
-    white-space: nowrap;
-}
-
-.brand span {
-    color: var(--cyan);
-}
-
-.nav-links {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-}
-
-.nav-links a {
-    color: var(--muted);
-    font-size: 13px;
-    transition: .25s;
-}
-
-.nav-links a:hover {
-    color: var(--cyan);
-}
-
-.login-button {
-    border: 1px solid #00e5ff70;
-    background: #00e5ff12;
-    color: var(--cyan);
-    padding: 9px 16px;
-    border-radius: 12px;
-    font-weight: bold;
-}
-
-/* HERO */
-
-.hero {
-    position: relative;
-    min-height: 620px;
-    display: grid;
-    place-items: center;
-    padding: 65px 0 55px;
-    text-align: center;
-    overflow: hidden;
-}
-
-.hero-inner {
-    width: min(850px, 92%);
-    margin: auto;
-    position: relative;
-    z-index: 2;
-}
-
-.pill {
-    display: inline-block;
-    border: 1px solid #00e5ff50;
-    background: #00e5ff0c;
-    color: var(--cyan);
-    padding: 7px 15px;
-    border-radius: 40px;
-    font-size: 12px;
-    letter-spacing: 1px;
-    margin-bottom: 22px;
-}
-
-.hero h1 {
-    font-size: clamp(39px, 8vw, 82px);
-    line-height: 1.08;
-    letter-spacing: -2px;
-    margin-bottom: 23px;
-}
-
-.hero p {
-    color: var(--muted);
-    max-width: 680px;
-    margin: auto auto 27px;
-    font-size: clamp(15px, 2vw, 18px);
-}
-
-.hero-actions {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-
-.btn {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    padding: 13px 21px;
-    border-radius: 13px;
-    border: 1px solid var(--border);
-    transition: transform .25s, box-shadow .25s;
-    font-weight: bold;
-}
-
-.btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 35px #00e5ff18;
-}
-
-.btn-primary {
-    color: #060714;
-    background: linear-gradient(100deg, var(--cyan), #9d9cff);
-    border: none;
-}
-
-.btn-secondary {
-    background: #ffffff08;
-}
-
-.hero-visual {
-    position: relative;
-    width: 190px;
-    height: 190px;
-    margin: 42px auto 0;
-    display: grid;
-    place-items: center;
-    perspective: 700px;
-}
-
-.ai-core {
-    position: relative;
-    width: 115px;
-    height: 115px;
-    border-radius: 50%;
-    background:
-        radial-gradient(circle at 30% 25%, white, #00e5ff 14%, #6e45ed 48%, #170c35 78%);
-    box-shadow:
-        0 0 35px #00e5ff70,
-        0 0 85px #7c3aed55,
-        inset -15px -15px 30px #080816;
-    animation: corePulse 3s ease-in-out infinite;
-}
-
-.ai-core::before,
-.ai-core::after {
-    content: "";
-    position: absolute;
-    inset: -22px;
-    border: 1px solid #00e5ff90;
-    border-radius: 50%;
-    transform: rotateX(65deg) rotateZ(25deg);
-    animation: rotateRing 7s linear infinite;
-}
-
-.ai-core::after {
-    inset: -36px;
-    border-color: #ff4ecd70;
-    transform: rotateX(70deg) rotateZ(-30deg);
-    animation-direction: reverse;
-    animation-duration: 10s;
-}
-
-@keyframes corePulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.08); }
-}
-
-@keyframes rotateRing {
-    to { transform: rotateX(65deg) rotateZ(385deg); }
-}
-
-.hero-orbit {
-    position: absolute;
-    width: 175px;
-    height: 175px;
-    border: 1px solid #ffffff30;
-    border-radius: 50%;
-    transform: rotateX(65deg);
-    animation: rotateOrbit 12s linear infinite;
-}
-
-@keyframes rotateOrbit {
-    to { transform: rotateX(65deg) rotateZ(360deg); }
-}
-
-.hero-slides {
-    position: relative;
-}
-
-.hero-slide {
-    display: none;
-    animation: slideIn .65s ease;
-}
-
-.hero-slide.active {
-    display: block;
-}
-
-@keyframes slideIn {
-    from { opacity: 0; transform: translateY(18px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.slide-controls {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 9px;
-    margin-top: 25px;
-}
-
-.slide-arrow {
-    background: #ffffff0b;
-    border: 1px solid var(--border);
-    color: white;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-}
-
-.slide-dot {
-    width: 8px;
-    height: 8px;
-    border: none;
-    border-radius: 20px;
-    background: #ffffff40;
-}
-
-.slide-dot.active {
-    width: 25px;
-    background: var(--cyan);
-}
-
-/* SECTION */
-
-.section {
-    padding: 75px 0;
-}
-
-.section-heading {
-    text-align: center;
-    max-width: 720px;
-    margin: 0 auto 36px;
-}
-
-.eyebrow {
-    color: var(--cyan);
-    font-size: 11px;
-    letter-spacing: 3px;
-    font-weight: bold;
-}
-
-.section-heading h2 {
-    font-size: clamp(28px, 5vw, 43px);
-    margin: 9px 0 12px;
-}
-
-.section-heading p {
-    color: var(--muted);
-}
-
-/* QUICK PROMPT */
-
-.quick-box {
-    max-width: 850px;
-    margin: 0 auto;
-    padding: 22px;
-    background: linear-gradient(145deg, #17172fdd, #0e1024dd);
-    border: 1px solid #ffffff20;
-    border-radius: 24px;
-    box-shadow: 0 20px 70px #00000030;
-}
-
-.quick-box textarea {
-    width: 100%;
-    min-height: 85px;
-    resize: vertical;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: white;
-    padding: 10px;
-}
-
-.quick-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px;
-}
-
-.quick-bottom span {
-    color: var(--muted);
-    font-size: 12px;
-}
-
-select,
-input,
-textarea {
-    accent-color: var(--cyan);
-}
-
-select {
-    color: white;
-    background: #15152d;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 9px;
-}
-
-/* TOOL CARDS */
-
-.tool-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0,1fr));
-    gap: 18px;
-}
-
-.tool-card {
-    position: relative;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    background: linear-gradient(145deg, #17172fdd, #0c0d20dd);
-    padding: 25px;
-    border-radius: 22px;
-    transition: transform .3s, border-color .3s;
-}
-
-.tool-card::before {
-    content: "";
-    position: absolute;
-    width: 120px;
-    height: 120px;
-    background: #00e5ff0b;
-    border-radius: 50%;
-    top: -55px;
-    right: -45px;
-}
-
-.tool-card:hover {
-    transform: translateY(-7px);
-    border-color: #00e5ff75;
-}
-
-.tool-icon {
-    font-size: 33px;
-    margin-bottom: 13px;
-}
-
-.tool-card h3 {
-    font-size: 19px;
-    margin-bottom: 8px;
-}
-
-.tool-card p {
-    font-size: 13px;
-    color: var(--muted);
-    margin-bottom: 19px;
-}
-
-/* WORKSPACE */
-
-.workspace {
-    display: grid;
-    grid-template-columns: 220px minmax(0,1fr);
-    gap: 20px;
-}
-
-.workspace-sidebar,
-.workspace-main {
-    background: #111126dd;
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 20px;
-}
-
-.workspace-sidebar h3 {
-    margin-bottom: 14px;
-}
-
-.side-tool {
-    width: 100%;
-    text-align: left;
-    color: var(--muted);
-    background: transparent;
-    border: 1px solid transparent;
-    padding: 11px;
-    border-radius: 11px;
-    margin: 3px 0;
-}
-
-.side-tool:hover,
-.side-tool.active {
-    color: var(--cyan);
-    background: #00e5ff0c;
-    border-color: #00e5ff35;
-}
-
-.workspace-main h3 {
-    font-size: 23px;
-    margin-bottom: 7px;
-}
-
-.workspace-main > p {
-    color: var(--muted);
-    font-size: 13px;
-    margin-bottom: 20px;
-}
-
-.field-label {
-    display: block;
-    font-size: 13px;
-    color: #d9d9ed;
-    margin: 15px 0 7px;
-}
-
-.field {
-    width: 100%;
-    background: #080817;
-    color: white;
-    border: 1px solid #ffffff20;
-    border-radius: 12px;
-    padding: 13px;
-    outline: none;
-}
-
-.field:focus {
-    border-color: var(--cyan);
-}
-
-textarea.field {
-    min-height: 110px;
-    resize: vertical;
-}
-
-.result-box {
-    background: #080817;
-    border: 1px solid #ffffff18;
-    padding: 17px;
-    border-radius: 13px;
-    margin-top: 18px;
-    min-height: 90px;
-    color: #c6c6df;
-    white-space: pre-wrap;
-    overflow-wrap: anywhere;
-}
-
-.result-box:empty::before {
-    content: "Your result will appear here.";
-    color: #73738f;
-}
-
-.notice {
-    background: #ffbf4710;
-    border: 1px solid #ffbf4740;
-    color: #e8d6ad;
-    border-radius: 12px;
-    padding: 12px;
-    margin-top: 13px;
-    font-size: 12px;
-}
-
-/* CHAT */
-
-.chat-layout {
-    max-width: 900px;
-    margin: auto;
-    border: 1px solid var(--border);
-    background: #101022e8;
-    border-radius: 22px;
-    overflow: hidden;
-}
-
-.chat-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 17px;
-    border-bottom: 1px solid var(--border);
-}
-
-.chat-top p {
-    color: var(--muted);
-    font-size: 12px;
-}
-
-.chat-messages {
-    height: 320px;
-    overflow-y: auto;
-    padding: 18px;
-}
-
-.message {
-    max-width: 90%;
-    padding: 12px 15px;
-    margin-bottom: 13px;
-    border-radius: 14px;
-    font-size: 14px;
-    white-space: pre-wrap;
-    overflow-wrap: anywhere;
-}
-
-.message.ai {
-    background: #ffffff0b;
-    border: 1px solid #ffffff10;
-    color: #e8e8fa;
-}
-
-.message.user {
-    background: #00e5ff12;
-    border: 1px solid #00e5ff35;
-    margin-left: auto;
-}
-
-.chat-input-row {
-    display: flex;
-    gap: 9px;
-    padding: 15px;
-    border-top: 1px solid var(--border);
-}
-
-.chat-input-row input {
-    flex: 1;
-    min-width: 0;
-    background: #080817;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 13px;
-    color: white;
-    outline: none;
-}
-
-/* IMAGE STUDIO */
-
-.image-stage {
-    min-height: 240px;
-    border: 1px dashed #ffffff35;
-    background:
-        radial-gradient(circle at 30% 30%, #7c3aed25, transparent 45%),
-        #080817;
-    border-radius: 18px;
-    display: grid;
-    place-items: center;
-    text-align: center;
-    padding: 20px;
-    margin-top: 20px;
-    overflow: hidden;
-}
-
-.image-stage img {
-    max-width: 100%;
-    max-height: 420px;
-    border-radius: 12px;
-}
-
-.image-stage p {
-    color: var(--muted);
-    font-size: 13px;
-}
-
-/* VIDEO MINI PLAYER */
-
-.video-player {
-    width: 100%;
-    background: #030309;
-    border: 1px solid #ffffff20;
-    border-radius: 18px;
-    overflow: hidden;
-    margin-top: 20px;
-}
-
-.video-player video {
-    display: block;
-    width: 100%;
-    max-height: 450px;
-    background: #030309;
-}
-
-.player-info {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    flex-wrap: wrap;
-    padding: 13px;
-    color: var(--muted);
-    font-size: 12px;
-}
-
-.file-label {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 15px;
-    background: #ffffff0a;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    margin-top: 12px;
-    cursor: pointer;
-}
-
-.file-label input {
-    display: none;
-}
-
-/* ABOUT */
-
-.about-grid {
-    display: grid;
-    grid-template-columns: .8fr 1.2fr;
-    gap: 30px;
-    align-items: center;
-}
-
-.profile-art {
-    min-height: 300px;
-    display: grid;
-    place-items: center;
-    border-radius: 25px;
-    background: radial-gradient(circle, #7c3aed35, transparent 65%), #111126;
-    border: 1px solid #9d4edd50;
-    position: relative;
-    overflow: hidden;
-}
-
-.profile-ring {
-    width: 155px;
-    height: 155px;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    font-size: 70px;
-    background: linear-gradient(145deg, #1b2947, #271244);
-    border: 2px solid #00e5ff80;
-    box-shadow: 0 0 45px #00e5ff30;
-    animation: corePulse 4s ease-in-out infinite;
-}
-
-.about-copy p {
-    color: var(--muted);
-    margin: 13px 0;
-}
-
-/* LOGIN MODAL */
-
-.modal {
-    position: fixed;
-    inset: 0;
-    z-index: 1000;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background: #000000bd;
-    backdrop-filter: blur(10px);
-}
-
-.modal.show {
-    display: flex;
-    animation: fade .25s ease;
-}
-
-.modal-card {
-    width: min(430px, 100%);
-    position: relative;
-    border: 1px solid #00e5ff45;
-    border-radius: 24px;
-    padding: 28px;
-    background: linear-gradient(145deg, #191932, #0c0c1c);
-    box-shadow: 0 0 70px #00e5ff15;
-}
-
-.modal-card h2 {
-    margin: 10px 0;
-    font-size: 27px;
-}
-
-.modal-card p {
-    color: var(--muted);
-    font-size: 13px;
-    margin-bottom: 17px;
-}
-
-.close-modal {
-    position: absolute;
-    right: 15px;
-    top: 13px;
-    width: 35px;
-    height: 35px;
-    border: 1px solid var(--border);
-    background: #ffffff0b;
-    color: white;
-    border-radius: 50%;
-}
-
-.modal-card .field {
-    margin-bottom: 12px;
-}
-
-.modal-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 9px;
-    margin-top: 14px;
-}
-
-.modal-actions button {
-    flex: 1;
-}
-
-.modal-note {
-    margin-top: 15px;
-    font-size: 11px;
-    color: #8989a8;
-}
-
-/* FOOTER */
-
-footer {
-    border-top: 1px solid var(--border);
-    background: #060610;
-    padding: 30px 0;
-    text-align: center;
-    color: var(--muted);
-    font-size: 12px;
-}
-
-footer strong {
-    color: var(--cyan);
-}
-
-/* MOBILE NAV */
-
-.mobile-menu {
-    display: none;
-    color: white;
-    background: #ffffff0b;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 8px 11px;
-}
-
-@media (max-width: 900px) {
-    .nav-links {
-        gap: 11px;
-    }
-
-    .nav-links a {
-        font-size: 12px;
-    }
-
-    .tool-grid {
-        grid-template-columns: repeat(2, minmax(0,1fr));
-    }
-}
-
-@media (max-width: 700px) {
-    .navbar {
-        min-height: 68px;
-        flex-wrap: wrap;
-        padding: 12px 0;
-    }
-
-    .mobile-menu {
-        display: block;
-    }
-
-    .nav-links {
-        display: none;
-        width: 100%;
-        flex-direction: column;
-        align-items: stretch;
-        padding: 10px 0;
-    }
-
-    .nav-links.open {
-        display: flex;
-    }
-
-    .nav-links a {
-        padding: 8px;
-        font-size: 14px;
-    }
-
-    .hero {
-        min-height: 590px;
-    }
-
-    .hero h1 {
-        letter-spacing: -1px;
-    }
-
-    .hero-visual {
-        transform: scale(.88);
-        margin-top: 30px;
-    }
-
-    .tool-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .workspace {
-        grid-template-columns: 1fr;
-    }
-
-    .workspace-sidebar {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 5px;
-    }
-
-    .workspace-sidebar h3 {
-        width: 100%;
-    }
-
-    .side-tool {
-        width: auto;
-    }
-
-    .about-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .section {
-        padding: 55px 0;
-    }
-
-    .quick-box {
-        padding: 14px;
-    }
-
-    .chat-input-row {
-        padding: 10px;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-    }
+  --bg:#070713;
+  --panel:#111126;
+  --cyan:#00e5ff;
+  --purple:#9d4edd;
+  --pink:#ff4ecd;
+  --text:#f7f7ff;
+  --muted:#a9aac5;
+  --border:rgba(255,255,255,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:85px}
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  overflow-x:hidden
+}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+.container{width:min(1150px,92%);margin:auto}
+.gradient{
+  background:linear-gradient(90deg,var(--cyan),var(--purple),var(--pink));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent
+}
+.btn{
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  padding:11px 17px;
+  gap:8px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:#ffffff09;
+  color:white;
+  font-weight:bold;
+  transition:.25s
+}
+.btn:hover{transform:translateY(-2px);border-color:var(--cyan)}
+.btn-primary{
+  background:linear-gradient(100deg,var(--cyan),#aaa0ff);
+  color:#080817;border:0
+}
+.field{
+  width:100%;
+  background:#080817;
+  color:white;
+  border:1px solid #ffffff25;
+  border-radius:11px;
+  padding:12px;
+  outline:none
+}
+.field:focus{border-color:var(--cyan)}
+textarea.field{min-height:100px;resize:vertical}
+.field-label{
+  display:block;
+  color:#dedef1;
+  font-size:13px;
+  margin:13px 0 7px
+}
+.panel,.tool-card,.workspace-sidebar,.workspace-main{
+  border:1px solid var(--border);
+  background:linear-gradient(145deg,#17172fdf,#0d0d20ee);
+  border-radius:19px;
+  padding:20px
+}
+.background-effects{
+  position:fixed;inset:0;overflow:hidden;
+  pointer-events:none;z-index:-1
+}
+.orb{
+  position:absolute;width:250px;height:250px;
+  border-radius:50%;filter:blur(85px);opacity:.18;
+  animation:float 12s ease-in-out infinite alternate
+}
+.orb.one{background:#7c3aed;top:5%;left:-100px}
+.orb.two{background:#00d9ff;top:45%;right:-120px}
+.orb.three{background:#ff29b8;bottom:-130px;left:30%}
+@keyframes float{
+  to{transform:translate(60px,-40px) scale(1.2)}
+}
+header{
+  position:sticky;top:0;z-index:50;
+  background:#070713ed;backdrop-filter:blur(15px);
+  border-bottom:1px solid var(--border)
+}
+.navbar{
+  min-height:70px;display:flex;align-items:center;
+  justify-content:space-between;gap:15px
+}
+.brand{font-size:21px;font-weight:900;white-space:nowrap}
+.brand span{color:var(--cyan)}
+.nav-links{display:flex;align-items:center;gap:17px}
+.nav-links a{font-size:13px;color:var(--muted)}
+.nav-links a:hover{color:var(--cyan)}
+.login-button,.mobile-menu{
+  border:1px solid #00e5ff65;background:#00e5ff10;
+  color:var(--cyan);padding:9px 12px;border-radius:11px;
+  font-weight:bold
+}
+.mobile-menu{display:none}
+.hero{
+  min-height:540px;display:grid;place-items:center;
+  text-align:center;padding:55px 0 40px;overflow:hidden
+}
+.hero-inner{width:min(850px,92%);margin:auto}
+.hero-slide{display:none;animation:slideIn .4s ease}
+.hero-slide.active{display:block}
+@keyframes slideIn{
+  from{opacity:0;transform:translateY(15px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.pill{
+  display:inline-block;border:1px solid #00e5ff55;
+  background:#00e5ff0c;color:var(--cyan);
+  padding:7px 14px;border-radius:30px;
+  font-size:11px;letter-spacing:1px;margin-bottom:20px
+}
+.hero h1{
+  font-size:clamp(38px,8vw,76px);
+  line-height:1.1;letter-spacing:-1px;margin-bottom:18px
+}
+.hero p{color:var(--muted);max-width:650px;margin:0 auto 24px}
+.hero-actions{
+  display:flex;justify-content:center;gap:11px;flex-wrap:wrap
+}
+.hero-visual{
+  position:relative;width:145px;height:145px;
+  margin:35px auto 0;display:grid;place-items:center
+}
+.ai-core{
+  width:90px;height:90px;border-radius:50%;
+  background:radial-gradient(circle at 30% 25%,white,#00e5ff 15%,#7142ed 48%,#170c35 80%);
+  box-shadow:0 0 35px #00e5ff75,0 0 75px #7c3aed55;
+  animation:pulse 3s ease-in-out infinite
+}
+.hero-visual:before,.hero-visual:after{
+  content:"";position:absolute;inset:0;
+  border:1px solid #00e5ff65;border-radius:50%;
+  transform:rotateX(65deg);
+  animation:orbit 7s linear infinite
+}
+.hero-visual:after{
+  inset:-12px;border-color:#ff4ecd65;
+  animation-duration:11s;animation-direction:reverse
+}
+@keyframes pulse{50%{transform:scale(1.08)}}
+@keyframes orbit{
+  to{transform:rotateX(65deg) rotateZ(360deg)}
+}
+.slide-controls{
+  display:flex;align-items:center;
+  justify-content:center;gap:9px;margin-top:20px
+}
+.slide-arrow{
+  width:35px;height:35px;border:1px solid var(--border);
+  border-radius:50%;background:#ffffff0b;color:white
+}
+.slide-dot{
+  width:9px;height:9px;border:0;
+  border-radius:20px;background:#ffffff40
+}
+.slide-dot.active{width:23px;background:var(--cyan)}
+.section{padding:60px 0;scroll-margin-top:80px}
+.section-heading{
+  text-align:center;max-width:720px;margin:0 auto 30px
+}
+.eyebrow{font-size:11px;letter-spacing:3px;color:var(--cyan);font-weight:bold}
+.section-heading h2{font-size:clamp(27px,5vw,42px);margin:8px 0}
+.section-heading p{color:var(--muted)}
+.quick-box{max-width:820px;margin:auto}
+.quick-bottom{
+  display:flex;justify-content:space-between;
+  align-items:center;gap:12px;flex-wrap:wrap
+}
+.quick-bottom small{color:var(--muted)}
+.action-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}
+.result-box{
+  background:#080817;border:1px solid #ffffff18;
+  padding:15px;border-radius:12px;margin-top:15px;
+  min-height:70px;color:#dedef2;white-space:pre-wrap;
+  overflow-wrap:anywhere
+}
+.result-box:empty:before{
+  content:"Your result will appear here.";
+  color:#777792
+}
+ .tool-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:17px
+}
+.tool-card{transition:transform .25s,border-color .25s}
+.tool-card:hover{transform:translateY(-5px);border-color:var(--cyan)}
+.tool-icon{font-size:32px;margin-bottom:10px}
+.tool-card h3{font-size:18px;margin-bottom:7px}
+.tool-card p{font-size:13px;color:var(--muted);margin-bottom:15px}
+.workspace{
+  display:grid;
+  grid-template-columns:205px minmax(0,1fr);
+  gap:17px
+}
+.workspace-sidebar,.workspace-main{min-width:0}
+.workspace-sidebar h3{margin-bottom:12px}
+.side-tool{
+  display:block;width:100%;text-align:left;color:var(--muted);
+  background:transparent;border:1px solid transparent;
+  padding:11px;border-radius:10px;margin:3px 0
+}
+.side-tool:hover,.side-tool.active{
+  color:var(--cyan);background:#00e5ff0d;border-color:#00e5ff35
+}
+.workspace-main h3{font-size:22px;margin-bottom:5px}
+.workspace-main>p{font-size:13px;color:var(--muted);margin-bottom:15px}
+.tool-pane{display:none}
+.tool-pane.active{display:block;animation:slideIn .3s ease}
+.notice{
+  font-size:12px;color:#ead8a9;background:#ffbf4710;
+  border:1px solid #ffbf4740;border-radius:10px;
+  padding:11px;margin-top:12px
+}
+.chat-layout{
+  max-width:850px;margin:auto;border:1px solid var(--border);
+  background:#101022e8;border-radius:20px;overflow:hidden
+}
+.chat-top{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:12px;padding:15px;border-bottom:1px solid var(--border)
+}
+.chat-top p{color:var(--muted);font-size:12px}
+.chat-messages{height:300px;overflow-y:auto;padding:15px}
+.message{
+  max-width:92%;padding:11px 13px;margin-bottom:12px;
+  border-radius:12px;font-size:14px;white-space:pre-wrap;
+  overflow-wrap:anywhere
+}
+.message.ai{background:#ffffff0b;border:1px solid #ffffff12}
+.message.user{background:#00e5ff12;border:1px solid #00e5ff35;margin-left:auto}
+.chat-input-row{
+  display:flex;gap:8px;padding:12px;border-top:1px solid var(--border)
+}
+.chat-input-row input{
+  flex:1;min-width:0;background:#080817;color:white;
+  border:1px solid var(--border);border-radius:10px;padding:12px
+}
+.image-stage{
+  min-height:180px;border:1px dashed #ffffff35;border-radius:15px;
+  background:#080817;display:grid;place-items:center;
+  text-align:center;padding:16px;margin-top:15px;overflow:hidden
+}
+.image-stage p{font-size:13px;color:var(--muted)}
+.file-label{
+  display:inline-flex;align-items:center;padding:11px 13px;
+  border:1px solid var(--border);border-radius:10px;
+  background:#ffffff09;cursor:pointer;margin-top:10px
+}
+.file-label input{display:none}
+.video-player{
+  margin-top:15px;background:#030309;
+  border:1px solid #ffffff20;border-radius:14px;overflow:hidden
+}
+.video-player video{width:100%;max-height:430px;display:block;background:#030309}
+.player-info{font-size:12px;color:var(--muted);padding:10px;overflow-wrap:anywhere}
+.about-grid{
+  display:grid;grid-template-columns:.8fr 1.2fr;
+  gap:25px;align-items:center
+}
+.profile-art{
+  min-height:260px;display:grid;place-items:center;
+  border:1px solid #9d4edd55;border-radius:22px;
+  background:radial-gradient(circle,#7c3aed35,transparent 65%),#111126
+}
+.profile-ring{
+  width:140px;height:140px;border-radius:50%;
+  display:grid;place-items:center;font-size:62px;
+  background:linear-gradient(145deg,#1b2947,#271244);
+  border:2px solid #00e5ff80;box-shadow:0 0 40px #00e5ff30;
+  animation:pulse 4s infinite
+}
+.about-copy p{color:var(--muted);margin:12px 0}
+footer{
+  border-top:1px solid var(--border);background:#060610;
+  padding:28px 0;text-align:center;color:var(--muted);font-size:12px
+}
+footer strong{color:var(--cyan)}
+.modal{
+  position:fixed;inset:0;z-index:1000;display:none;
+  align-items:center;justify-content:center;padding:18px;
+  background:#000000c7;backdrop-filter:blur(8px)
+}
+.modal.show{display:flex;animation:slideIn .2s ease}
+.modal-card{
+  width:min(420px,100%);position:relative;
+  border:1px solid #00e5ff45;border-radius:22px;
+  padding:25px;background:linear-gradient(145deg,#191932,#0c0c1c)
+}
+.modal-card h2{margin:8px 0}
+.modal-card p{font-size:13px;color:var(--muted);margin-bottom:12px}
+.close-modal{
+  position:absolute;right:12px;top:12px;width:33px;height:33px;
+  border:1px solid var(--border);background:#ffffff0b;
+  color:white;border-radius:50%
+}
+.modal-card .field{margin-bottom:10px}
+.modal-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}
+.modal-actions button{flex:1}
+.modal-note{font-size:11px;color:#9999b5;margin-top:12px}
+#toast{
+  position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);
+  opacity:0;pointer-events:none;z-index:2000;background:#18182d;
+  border:1px solid #00e5ff70;color:white;padding:12px 17px;
+  border-radius:12px;transition:.25s;max-width:90%;text-align:center
+}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:850px){
+  .nav-links{gap:10px}
+  .nav-links a{font-size:12px}
+  .tool-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:680px){
+  .navbar{min-height:65px;flex-wrap:wrap;padding:10px 0}
+  .brand{font-size:18px}
+  .mobile-menu{display:block}
+  .nav-links{
+    display:none;width:100%;flex-direction:column;
+    align-items:stretch;gap:4px;order:5
+  }
+  .nav-links.open{display:flex}
+  .nav-links a{padding:9px;font-size:14px}
+  .login-button{padding:8px;font-size:12px}
+  .hero{min-height:520px}
+  .tool-grid,.workspace,.about-grid{grid-template-columns:1fr}
+  .workspace-sidebar{display:flex;flex-wrap:wrap;gap:5px}
+  .workspace-sidebar h3{width:100%}
+  .side-tool{width:auto}
+  .section{padding:45px 0}
+  .panel{padding:14px}
 }
 </style>
 </head>
 
 <body>
-
 <div class="background-effects" aria-hidden="true">
-    <div class="orb one"></div>
-    <div class="orb two"></div>
-    <div class="orb three"></div>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+  <div class="orb three"></div>
 </div>
 
 <header>
-    <div class="container navbar">
-
-        <a href="#home" class="brand">PIYUSH <span>AI WORLD.</span></a>
-
-        <button class="mobile-menu" id="mobileMenu" aria-label="Open navigation">
-            ☰ Menu
-        </button>
-
-        <nav class="nav-links" id="navLinks">
-            <a href="#home">Home</a>
-            <a href="#ai-chat">AI Chat</a>
-            <a href="#tools">AI Tools</a>
-            <a href="#studio">Studio</a>
-            <a href="#about">About Me</a>
-        </nav>
-
-        <button class="login-button" id="openLogin">Login / Sign Up</button>
-
-    </div>
+  <div class="container navbar">
+    <a href="#home" class="brand">PIYUSH <span>AI WORLD.</span></a>
+    <button class="mobile-menu" id="mobileMenu" type="button">☰ Menu</button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#ai-chat">AI Chat</a>
+      <a href="#tools">AI Tools</a>
+      <a href="#studio">Studio</a>
+      <a href="#about">About Me</a>
+    </nav>
+    <button class="login-button" id="openLogin" type="button">Login / Sign Up</button>
+  </div>
 </header>
 
 <main>
-
-<!-- HERO SLIDER -->
-
 <section class="hero" id="home">
-    <div class="hero-inner">
+  <div class="hero-inner">
+    <div class="hero-slides">
+      <div class="hero-slide active">
+        <span class="pill">✦ WELCOME TO YOUR AI WORLD</span>
+        <h1>Imagine More.<br><span class="gradient">Create Anything.</span></h1>
+        <p>Explore ideas, write scripts, create content and discover artificial intelligence.</p>
+        <div class="hero-actions">
+          <a href="#ai-chat" class="btn btn-primary">✦ Start Exploring</a>
+          <a href="#tools" class="btn">Explore AI Tools</a>
+        </div>
+      </div>
+      <div class="hero-slide">
+        <span class="pill">✦ YOUR PERSONAL AI STUDIO</span>
+        <h1>Your Ideas.<br><span class="gradient">Your Creation.</span></h1>
+        <p>Turn your imagination into stories, scripts, image concepts and video projects.</p>
+        <div class="hero-actions"><a href="#studio" class="btn btn-primary">Open AI Studio ↗</a></div>
+      </div>
+      <div class="hero-slide">
+        <span class="pill">✦ BUILT FOR CREATORS</span>
+        <h1>Welcome to<br><span class="gradient">Piyush AI World.</span></h1>
+        <p>One creative space for your questions, ideas and digital journey.</p>
+        <div class="hero-actions"><a href="#about" class="btn btn-primary">Meet Piyush ↗</a></div>
+      </div>
+    </div>
+    <div class="hero-visual"><div class="ai-core"></div></div>
+    <div class="slide-controls">
+      <button class="slide-arrow" id="prevSlide" type="button">‹</button>
+      <button class="slide-dot active" type="button" aria-label="Slide 1"></button>
+      <button class="slide-dot" type="button" aria-label="Slide 2"></button>
+      <button class="slide-dot" type="button" aria-label="Slide 3"></button>
+      <button class="slide-arrow" id="nextSlide" type="button">›</button>
+    </div>
+  </div>
+</section>
 
-        <div class="hero-slides">
+<section class="section" id="quick-create">
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow">YOUR CREATIVE LAUNCHPAD</span>
+      <h2>What do you want to <span class="gradient">create?</span></h2>
+      <p>Enter an idea and choose a tool.</p>
+    </div>
+    <div class="panel quick-box">
+      <label class="field-label" for="quickPrompt">Your idea or topic</label>
+      <textarea id="quickPrompt" class="field" placeholder="Write your topic here..."></textarea>
+      <div class="quick-bottom">
+        <small>Start with any idea.</small>
+        <div class="action-row">
+          <select id="quickMode" class="field" aria-label="Choose tool">
+            <option value="script">Script Writer</option>
+            <option value="image">Image Prompt</option>
+            <option value="video">Video Prompt</option>
+            <option value="chat">AI Chat Demo</option>
+          </select>
+          <button class="btn btn-primary" id="quickGenerate" type="button">Generate ✦</button>
+        </div>
+      </div>
+      <div class="result-box" id="quickResult" aria-live="polite"></div>
+      <div class="action-row">
+        <button class="btn" id="copyQuick" type="button">Copy Result</button>
+        <button class="btn" id="clearQuick" type="button">Clear</button>
+      </div>
+    </div>
+  </div>
+</section>
 
-            <div class="hero-slide active">
-                <span class="pill">✦ WELCOME TO YOUR AI WORLD</span>
-                <h1>Imagine More.<br><span class="gradient">Create Anything.</span></h1>
-                <p>
-                    Explore ideas, write scripts, create content and discover
-                    the possibilities of artificial intelligence.
-                </p>
-                <div class="hero-actions">
-                    <a href="#ai-chat" class="btn btn-primary">✦ Start Exploring</a>
-                    <a href="#tools" class="btn btn-secondary">Explore AI Tools</a>
-                </div>
-            </div>
+<section class="section" id="tools">
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow">EXPLORE YOUR TOOLKIT</span>
+      <h2>Powerful tools. <span class="gradient">One place.</span></h2>
+      <p>Choose a tool to get started.</p>
+    </div>
+    <div class="tool-grid">
+      <article class="tool-card"><div class="tool-icon">💬</div><h3>AI Chat</h3><p>Try the demo chat interface.</p><button class="btn" type="button" data-open-tool="chat">Open Chat ↗</button></article>
+      <article class="tool-card"><div class="tool-icon">✍️</div><h3>Script Writer</h3><p>Create a script draft from a topic.</p><button class="btn" type="button" data-open-tool="script">Write Script ↗</button></article>
+      <article class="tool-card"><div class="tool-icon">🎨</div><h3>Image Prompt</h3><p>Create a detailed image prompt.</p><button class="btn" type="button" data-open-tool="image">Create Prompt ↗</button></article>
+      <article class="tool-card"><div class="tool-icon">🎬</div><h3>Video Prompt</h3><p>Create a cinematic video prompt.</p><button class="btn" type="button" data-open-tool="video">Video Prompt ↗</button></article>
+      <article class="tool-card"><div class="tool-icon">📚</div><h3>Study Assistant</h3><p>Make a basic study outline.</p><button class="btn" type="button" data-open-tool="study">Study Now ↗</button></article>
+      <article class="tool-card"><div class="tool-icon">▶️</div><h3>Mini Player</h3><p>Play a video from your device.</p><button class="btn" type="button" data-open-tool="player">Open Player ↗</button></article>
+    </div>
+  </div>
+</section>
 
-            <div class="hero-slide">
-                <span class="pill">✦ YOUR PERSONAL AI STUDIO</span>
-                <h1>Your Ideas.<br><span class="gradient">Your Creation.</span></h1>
-                <p>
-                    Turn your imagination into stories, scripts, image concepts
-                    and video projects.
-                </p>
-                <div class="hero-actions">
-                    <a href="#studio" class="btn btn-primary">Open AI Studio ↗</a>
-                </div>
-            </div>
+<section class="section" id="studio">
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow">PIYUSH CREATIVE STUDIO</span>
+      <h2>Your own <span class="gradient">AI workspace.</span></h2>
+      <p>Switch tools using the buttons below.</p>
+    </div>
+    <div class="workspace">
+      <aside class="workspace-sidebar">
+        <h3>🧰 My Tools</h3>
+        <button class="side-tool active" type="button" data-tool="script">✍️ Script Writer</button>
+        <button class="side-tool" type="button" data-tool="image">🎨 Image Prompt</button>
+        <button class="side-tool" type="button" data-tool="video">🎬 Video Prompt</button>
+        <button class="side-tool" type="button" data-tool="study">📚 Study Assistant</button>
+        <button class="side-tool" type="button" data-tool="player">▶️ Mini Player</button>
+      </aside>
 
-            <div class="hero-slide">
-                <span class="pill">✦ BUILT FOR CREATORS</span>
-                <h1>Welcome to<br><span class="gradient">Piyush AI World.</span></h1>
-                <p>
-                    One creative space for your questions, ideas and digital journey.
-                </p>
-                <div class="hero-actions">
-                    <a href="#about" class="btn btn-primary">Meet Piyush ↗</a>
-                </div>
-            </div>
-
+      <div class="workspace-main">
+        <div class="tool-pane active" id="pane-script">
+          <h3>✍️ Script Writer</h3><p>Create a template-based script draft.</p>
+          <label class="field-label" for="scriptTopic">Topic</label>
+          <input class="field" id="scriptTopic" placeholder="Enter your video topic">
+          <label class="field-label" for="scriptStyle">Script style</label>
+          <select id="scriptStyle" class="field">
+            <option>YouTube video</option>
+            <option>Suspense story</option>
+            <option>Educational video</option>
+            <option>Motivational video</option>
+            <option>Short video</option>
+          </select>
+          <div class="action-row">
+            <button class="btn btn-primary" id="generateScript" type="button">Generate Draft</button>
+            <button class="btn" data-clear="scriptResult" type="button">Clear</button>
+          </div>
+          <div class="result-box" id="scriptResult" aria-live="polite"></div>
+          <div class="action-row"><button class="btn" data-copy="scriptResult" type="button">Copy Script</button></div>
+          <div class="notice">This is a browser demo, not live AI.</div>
         </div>
 
-        <div class="hero-visual" aria-label="Animated AI orb">
-            <div class="hero-orbit"></div>
-            <div class="ai-core"></div>
+        <div class="tool-pane" id="pane-image">
+          <h3>🎨 Image Prompt Studio</h3><p>Prepare a prompt for an image tool.</p>
+          <label class="field-label" for="imageTopic">Describe your image</label>
+          <textarea class="field" id="imageTopic" placeholder="Describe your image"></textarea>
+          <label class="field-label" for="imageRatio">Aspect ratio</label>
+          <select class="field" id="imageRatio"><option>16:9 landscape</option><option>9:16 portrait</option><option>1:1 square</option></select>
+          <div class="action-row">
+            <button class="btn btn-primary" id="generateImagePrompt" type="button">Generate Prompt</button>
+            <button class="btn" data-clear="imageResult" type="button">Clear</button>
+          </div>
+          <div class="result-box" id="imageResult" aria-live="polite"></div>
+          <div class="action-row"><button class="btn" data-copy="imageResult" type="button">Copy Prompt</button></div>
+          <div class="image-stage"><p>Actual image generation requires an image-generation service.</p></div>
         </div>
 
-        <div class="slide-controls">
-            <button class="slide-arrow" id="prevSlide" aria-label="Previous slide">‹</button>
-            <button class="slide-dot active" aria-label="Slide 1"></button>
-            <button class="slide-dot" aria-label="Slide 2"></button>
-            <button class="slide-dot" aria-label="Slide 3"></button>
-            <button class="slide-arrow" id="nextSlide" aria-label="Next slide">›</button>
-        
+        <div class="tool-pane" id="pane-video">
+          <h3>🎬 Video Prompt Studio</h3><p>Prepare a prompt for your video tool.</p>
+          <label class="field-label" for="videoTopic">Video idea</label>
+          <textarea class="field" id="videoTopic" placeholder="Describe the scene"></textarea>
+          <label class="field-label" for="videoDuration">Clip duration</label>
+          <select class="field" id="videoDuration"><option>8 seconds</option><option>10 seconds</option><option>15 seconds</option><option>30 seconds</option></select>
+          <label class="field-label" for="videoRatio">Video format</label>
+          <select class="field" id="videoRatio"><option>16:9 YouTube</option><option>9:16 Shorts/Reels</option><option>1:1 square</option></select>
+          <div class="action-row">
+            <button class="btn btn-primary" id="generateVideoPrompt" type="button">Generate Prompt</button>
+            <button class="btn" data-clear="videoResult" type="button">Clear</button>
+          </div>
+          <div class="result-box" id="videoResult" aria-live="polite"></div>
+          <div class="action-row"><button class="btn" data-copy="videoResult" type="button">Copy Prompt</button></div>
+          <div class="notice">This generates text only, not a video file.</div>
+        </div>
+
+        <div class="tool-pane" id="pane-study">
+          <h3>📚 Study Assistant</h3><p>Create a general study outline.</p>
+          <label class="field-label" for="studyTopic">Subject or question</label>
+          <textarea class="field" id="studyTopic" placeholder="Enter your study topic"></textarea>
+          <div class="action-row">
+            <button class="btn btn-primary" id="generateStudy" type="button">Make Study Notes</button>
+            <button class="btn" data-clear="studyResult" type="button">Clear</button>
+          </div>
+          <div class="result-box" id="studyResult" aria-live="polite"></div>
+          <div class="action-row"><button class="btn" data-copy="studyResult" type="button">Copy Notes</button></div>
+        </div>
+
+        <div class="tool-pane" id="pane-player">
+          <h3>▶️ Mini Video Player</h3><p>Choose a video saved on your phone.</p>
+          <label class="file-label">Choose video file <input type="file" id="videoFile" accept="video/*"></label>
+          <div class="video-player">
+            <video id="localVideo" controls playsinline preload="metadata"></video>
+            <div class="player-info" id="playerInfo">No video selected.</div>
+          </div>
+          <button class="btn" id="clearVideo" type="button">Remove Video</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="ai-chat">
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow">ASK • EXPLORE • LEARN</span>
+      <h2>Welcome to <span class="gradient">AI Chat.</span></h2>
+      <p>This demo chat does not connect to a live AI model.</p>
+    </div>
+    <div class="chat-layout">
+      <div class="chat-top">
+        <div><strong>✨ Piyush AI Assistant</strong><p>Browser demo mode</p></div>
+        <button class="btn" id="clearChat" type="button">Clear Chat</button>
+      </div>
+      <div class="chat-messages" id="chatMessages" aria-live="polite">
+        <div class="message ai">Hello! Welcome to Piyush AI World. Send a message to try the demo.</div>
+      </div>
+      <form class="chat-input-row" id="chatForm">
+        <input id="chatInput" autocomplete="off" placeholder="Type your message..." aria-label="Your message">
+        <button class="btn btn-primary" type="submit">Send ➤</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-heading">
+      <span class="eyebrow">ABOUT THE CREATOR</span>
+      <h2>Meet <span class="gradient">Piyush Yadav.</span></h2>
+    </div>
+    <div class="about-grid">
+      <div class="profile-art"><div class="profile-ring">🚀</div></div>
+      <div class="about-copy">
+        <h3>Welcome to Piyush AI World</h3>
+        <p>A creative corner for ideas, stories, scripts and digital experiments.</p>
+        <p>This website brings useful creator tools together in one workspace.</p>
+        <p class="gradient">Imagine it. Write it. Create it.</p>
+        <a href="#tools" class="btn btn-primary">Explore Tools ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">Made with creativity by <strong>Piyush Yadav</strong> · Piyush AI World<br>© <span id="year"></span> All rights reserved.</div>
+</footer>
+
+<div class="modal" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-card">
+    <button class="close-modal" id="closeLogin" type="button">✕</button>
+    <span class="eyebrow">WELCOME CREATOR</span>
+    <h2 id="modalTitle">Join Piyush AI World</h2>
+    <p>This is a demo sign-in window. You can continue without logging in.</p>
+    <label class="field-label" for="loginEmail">Email (demo only)</label>
+    <input class="field" id="loginEmail" type="email" placeholder="you@example.com">
+    <label class="field-label" for="loginPassword">Password (demo only)</label>
+    <input class="field" id="loginPassword" type="password" placeholder="Demo password">
+    <div class="modal-actions">
+      <button class="btn btn-primary" id="demoLogin" type="button">Continue</button>
+      <button class="btn" id="continueGuest" type="button">Continue as Guest</button>
+    </div>
+    <div class="modal-note">Do not enter a real password. This demo does not create an account.</div>
+  </div>
+</div>
+
+<div id="toast" role="status" aria-live="polite"></div>
+<script>
+"use strict";
+
+/* SHORTCUTS */
+const $ = (id) => document.getElementById(id);
+
+function toast(message) {
+  const box = $("toast");
+  if (!box) {
+    alert(message);
+    return;
+  }
+  box.textContent = message;
+  box.classList.add("show");
+  clearTimeout(window.toastTimer);
+  window.toastTimer = setTimeout(() => {
+    box.classList.remove("show");
+  }, 2600);
+}
+
+function setText(id, value) {
+  const el = $(id);
+  if (el) el.textContent = value;
+}
+
+function getValue(id) {
+  return $(id) ? $(id).value.trim() : "";
+}
+
+/* MOBILE MENU */
+const mobileMenu = $("mobileMenu");
+const navLinks = $("navLinks");
+
+if (mobileMenu && navLinks) {
+  mobileMenu.addEventListener("click", () => {
+    navLinks.classList.toggle("open");
+  });
+
+  navLinks.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("open");
+    });
+  });
+}
+
+/* HERO SLIDER */
+const slides = Array.from(document.querySelectorAll(".hero-slide"));
+const dots = Array.from(document.querySelectorAll(".slide-dot"));
+let currentSlide = 0;
+
+function showSlide(index) {
+  if (!slides.length) return;
+
+  currentSlide = (index + slides.length) % slides.length;
+
+  slides.forEach((slide, i) => {
+    slide.classList.toggle("active", i === currentSlide);
+  });
+
+  dots.forEach((dot, i) => {
+    dot.classList.toggle("active", i === currentSlide);
+  });
+}
+
+if ($("prevSlide")) {
+  $("prevSlide").addEventListener("click", () => {
+    showSlide(currentSlide - 1);
+  });
+}
+
+if ($("nextSlide")) {
+  $("nextSlide").addEventListener("click", () => {
+    showSlide(currentSlide + 1);
+  });
+}
+
+dots.forEach((dot, i) => {
+  dot.addEventListener("click", () => showSlide(i));
+});
+
+if (slides.length > 1) {
+  setInterval(() => showSlide(currentSlide + 1), 6000);
+}
+
+/* STUDIO TOOL SWITCHING */
+function openTool(name, scrollToStudio = true) {
+  const validTools = ["script", "image", "video", "study", "player"];
+
+  if (!validTools.includes(name)) {
+    toast("Tool not found.");
+    return;
+  }
+
+  document.querySelectorAll(".side-tool").forEach(button => {
+    button.classList.toggle("active", button.dataset.tool === name);
+  });
+
+  document.querySelectorAll(".tool-pane").forEach(pane => {
+    pane.classList.toggle("active", pane.id === "pane-" + name);
+  });
+
+  if (scrollToStudio && $("studio")) {
+    $("studio").scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }
+}
+
+document.querySelectorAll(".side-tool").forEach(button => {
+  button.addEventListener("click", () => {
+    openTool(button.dataset.tool, false);
+  });
+});
+
+document.querySelectorAll("[data-open-tool]").forEach(button => {
+  button.addEventListener("click", () => {
+    const name = button.dataset.openTool;
+
+    if (name === "chat") {
+      $("ai-chat").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+      setTimeout(() => {
+        if ($("chatInput")) $("chatInput").focus();
+      }, 500);
+    } else {
+      openTool(name);
+    }
+  });
+});
+
+/* BASIC TEXT TEMPLATES */
+function makeScript(topic, style) {
+  if (!topic) return "पहले अपना वीडियो टॉपिक लिखिए।";
+
+  return `TITLE: ${topic}
+
+HOOK:
+क्या आप जानते हैं ${topic} के बारे में एक ऐसी बात, जो आपको हैरान कर सकती है? वीडियो को अंत तक देखिए।
+
+INTRODUCTION:
+नमस्कार दोस्तों! आपका स्वागत है। आज हम बात करेंगे ${topic} के बारे में।
+
+MAIN CONTENT:
+1. विषय का परिचय दीजिए।
+2. इससे जुड़ी महत्वपूर्ण जानकारी समझाइए।
+3. रोचक तथ्य और उदाहरण जोड़िए।
+4. दर्शकों को आसान भाषा में पूरी बात समझाइए।
+
+STYLE: ${style}
+
+ENDING:
+अगर आपको यह वीडियो पसंद आया हो, तो लाइक करें, चैनल को सब्सक्राइब करें और अपनी राय कमेंट में बताएं।
+
+NOTE:
+यह एक शुरुआती स्क्रिप्ट टेम्पलेट है। प्रकाशित करने से पहले तथ्यों की जाँच करें।`;
+}
+
+function makeImagePrompt(topic, ratio) {
+  if (!topic) return "पहले अपनी इमेज का विवरण लिखिए।";
+
+  return `Create a high-quality image about: ${topic}.
+
+COMPOSITION: ${ratio}
+STYLE: Professional cinematic digital artwork.
+LIGHTING: Dramatic yet natural lighting.
+DETAILS: Rich textures, sharp focus, realistic shadows and balanced composition.
+QUALITY: High resolution, polished professional finish.
+IMPORTANT: Keep the main subject clear and visually appealing.
+TEXT: No unwanted text, letters, logos or watermarks.`;
+}
+
+function makeVideoPrompt(topic, duration, ratio) {
+  if (!topic) return "पहले अपनी वीडियो की कहानी या सीन लिखिए।";
+
+  return `VIDEO GENERATION PROMPT
+
+SCENE: ${topic}
+
+DURATION: ${duration}
+FORMAT: ${ratio}
+
+VISUAL STYLE:
+Cinematic visuals, detailed environment, natural movement and professional lighting.
+
+CAMERA:
+Use smooth, intentional camera movement suitable for the scene.
+
+CHARACTER CONSISTENCY:
+Keep the appearance, clothing and important character features consistent throughout the clip.
+
+AUDIO:
+Use suitable ambient sound. Add clear Hindi dialogue or voice-over only if needed.
+
+QUALITY:
+Avoid flickering, distorted faces, extra fingers, abrupt cuts and unwanted text.
+
+IMPORTANT:
+This is a text prompt, not a generated video file.`;
+}
+
+function makeStudyNotes(topic) {
+  if (!topic) return "पहले अपना विषय या सवाल लिखिए।";
+
+  return `STUDY NOTES: ${topic}
+
+1. INTRODUCTION
+इस विषय की परिभाषा और उद्देश्य लिखिए।
+
+2. IMPORTANT POINTS
+• मुख्य अवधारणाएँ समझिए।
+• जरूरी शब्द और परिभाषाएँ लिखिए।
+• संबंधित उदाहरणों का अभ्यास कीजिए।
+
+3. EXAM PREPARATION
+• उत्तर को शीर्षकों में लिखें।
+• जहाँ जरूरी हो, साफ-सुथरा डायग्राम बनाएँ।
+• महत्वपूर्ण सूत्र और इकाइयाँ याद रखें।
+
+4. QUICK REVISION
+विषय की मुख्य बातों को अपने शब्दों में दोहराएँ।
+
+NOTE:
+ये सामान्य शुरुआती नोट्स हैं। सटीक उत्तर के लिए विषय की पुस्तक या विश्वसनीय स्रोत देखें।`;
+}
+
+/* SCRIPT GENERATOR */
+if ($("generateScript")) {
+  $("generateScript").addEventListener("click", () => {
+    const topic = getValue("scriptTopic");
+    const style = getValue("scriptStyle");
+    setText("scriptResult", makeScript(topic, style));
+  });
+}
+
+/* IMAGE PROMPT GENERATOR */
+if ($("generateImagePrompt")) {
+  $("generateImagePrompt").addEventListener("click", () => {
+    const topic = getValue("imageTopic");
+    const ratio = getValue("imageRatio");
+    setText("imageResult", makeImagePrompt(topic, ratio));
+  });
+}
+
+/* VIDEO PROMPT GENERATOR */
+if ($("generateVideoPrompt")) {
+  $("generateVideoPrompt").addEventListener("click", () => {
+    const topic = getValue("videoTopic");
+    const duration = getValue("videoDuration");
+    const ratio = getValue("videoRatio");
+
+    setText(
+      "videoResult",
+      makeVideoPrompt(topic, duration, ratio)
+    );
+  });
+}
+
+/* STUDY NOTES GENERATOR */
+if ($("generateStudy")) {
+  $("generateStudy").addEventListener("click", () => {
+    const topic = getValue("studyTopic");
+    setText("studyResult", makeStudyNotes(topic));
+  });
+}
+
+/* COPY AND CLEAR BUTTONS */
+async function copyText(text) {
+  if (!text.trim()) {
+    toast("Copy करने के लिए पहले कुछ बनाइए।");
+    return;
+  }
+
+  try {
+    await navigator.clipboard.writeText(text);
+    toast("कॉपी हो गया! ✅");
+  } catch (error) {
+    const temporary = document.createElement("textarea");
+    temporary.value = text;
+    temporary.style.position = "fixed";
+    temporary.style.left = "-9999px";
+    document.body.appendChild(temporary);
+    temporary.select();
+
+    let success = false;
+
+    try {
+      success = document.execCommand("copy");
+    } catch (e) {
+      success = false;
+    }
+
+    temporary.remove();
+
+    toast(
+      success
+        ? "कॉपी हो गया! ✅"
+        : "कॉपी नहीं हुआ। टेक्स्ट को दबाकर Copy चुनें।"
+    );
+  }
+}
+
+document.querySelectorAll("[data-copy]").forEach(button => {
+  button.addEventListener("click", () => {
+    const target = $(button.dataset.copy);
+    if (target) copyText(target.textContent);
+  });
+});
+
+document.querySelectorAll("[data-clear]").forEach(button => {
+  button.addEventListener("click", () => {
+    const target = $(button.dataset.clear);
+    if (target) target.textContent = "";
+  });
+});
+
+/* QUICK GENERATOR */
+if ($("quickGenerate")) {
+  $("quickGenerate").addEventListener("click", () => {
+    const topic = getValue("quickPrompt");
+    const mode = getValue("quickMode");
+    let result = "";
+
+    if (!topic) {
+      toast("पहले अपना टॉपिक लिखिए।");
+      $("quickPrompt").focus();
+      return;
+    }
+
+    if (mode === "script") {
+      result = makeScript(topic, "YouTube video");
+    } else if (mode === "image") {
+      result = makeImagePrompt(topic, "16:9 landscape");
+    } else if (mode === "video") {
+      result = makeVideoPrompt(
+        topic,
+        "8 seconds",
+        "16:9 YouTube"
+      );
+    } else {
+      result = makeDemoReply(topic);
+    }
+
+    setText("quickResult", result);
+  });
+}
+
+if ($("copyQuick")) {
+  $("copyQuick").addEventListener("click", () => {
+    copyText(getValue("quickResult") || $("quickResult").textContent);
+  });
+}
+
+if ($("clearQuick")) {
+  $("clearQuick").addEventListener("click", () => {
+    if ($("quickPrompt")) $("quickPrompt").value = "";
+    setText("quickResult", "");
+  });
+}
+
+/* DEMO CHAT */
+function makeDemoReply(message) {
+  const lower = message.toLowerCase();
+
+  if (lower.includes("hello") || lower.includes("hi") ||
+      lower.includes("namaste") || lower.includes("नमस्ते")) {
+    return "नमस्ते! Piyush AI World में आपका स्वागत है। आप स्क्रिप्ट, वीडियो आइडिया या पढ़ाई के विषय पर मदद ले सकते हैं।";
+  }
+
+  if (lower.includes("script") || lower.includes("स्क्रिप्ट")) {
+    return "स्क्रिप्ट बनाने के लिए Studio में Script Writer खोलें, अपना टॉपिक लिखें और Generate Draft दबाएँ। यह अभी टेम्पलेट आधारित डेमो है।";
+  }
+
+  if (lower.includes("video") || lower.includes("वीडियो")) {
+    return "वीडियो का आइडिया बनाने के लिए Studio में Video Prompt खोलें। ध्यान दें: यह वेबसाइट अभी वीडियो फ़ाइल खुद नहीं बनाती।";
+  }
+
+  if (lower.includes("image") || lower.includes("फोटो") ||
+      lower.includes("इमेज")) {
+    return "इमेज प्रॉम्प्ट बनाने के लिए Studio में Image Prompt खोलें। असली इमेज बनाने के लिए अलग इमेज जनरेशन सेवा चाहिए।";
+  }
+
+  return `आपने पूछा: "${message}"
+
+यह Piyush AI World का डेमो चैट है। अभी यह लाइव AI से कनेक्ट नहीं है। आप Script Writer, Image Prompt या Video Prompt टूल इस्तेमाल कर सकते हैं।`;
+}
+
+function addMessage(text, type) {
+  const messages = $("chatMessages");
+  if (!messages) return;
+
+  const message = document.createElement("div");
+  message.className = "message " + type;
+  message.textContent = text;
+  messages.appendChild(message);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+if ($("chatForm")) {
+  $("chatForm").addEventListener("submit", event => {
+    event.preventDefault();
+
+    const input = $("chatInput");
+    const message = input.value.trim();
+
+    if (!message) {
+      toast("पहले अपना सवाल लिखिए।");
+      return;
+    }
+
+    addMessage(message, "user");
+    input.value = "";
+
+    setTimeout(() => {
+      addMessage(makeDemoReply(message), "ai");
+    }, 350);
+  });
+}
+
+if ($("clearChat")) {
+  $("clearChat").addEventListener("click", () => {
+    const messages = $("chatMessages");
+    if (!messages) return;
+
+    messages.replaceChildren();
+
+    addMessage(
+      "Chat साफ हो गई है। अपना अगला सवाल लिखिए।",
+      "ai"
+    );
+  });
+}
+
+/* LOCAL VIDEO PLAYER */
+let currentVideoURL = null;
+
+if ($("videoFile")) {
+  $("videoFile").addEventListener("change", event => {
+    const file = event.target.files && event.target.files[0];
+    if (!file) return;
+
+    if (!file.type.startsWith("video/")) {
+      toast("कृपया एक वीडियो फ़ाइल चुनें।");
+      return;
+    }
+
+    if (currentVideoURL) {
+      URL.revokeObjectURL(currentVideoURL);
+    }
+
+    currentVideoURL = URL.createObjectURL(file);
+
+    $("localVideo").src = currentVideoURL;
+    setText("playerInfo", "Selected: " + file.name);
+    toast("वीडियो तैयार है। Play दबाएँ।");
+  });
+}
+
+if ($("clearVideo")) {
+  $("clearVideo").addEventListener("click", () => {
+    if ($("localVideo")) {
+      $("localVideo").pause();
+      $("localVideo").removeAttribute("src");
+      $("localVideo").load();
+    }
+
+    if (currentVideoURL) {
+      URL.revokeObjectURL(currentVideoURL);
+      currentVideoURL = null;
+    }
+
+    if ($("videoFile")) $("videoFile").value = "";
+    setText("playerInfo", "No video selected.");
+    toast("वीडियो हटा दिया गया।");
+  });
+}
+
+/* LOGIN MODAL */
+const loginModal = $("loginModal");
+
+function openLogin() {
+  if (loginModal) loginModal.classList.add("show");
+}
+
+function closeLogin() {
+  if (loginModal) loginModal.classList.remove("show");
+}
+
+if ($("openLogin")) {
+  $("openLogin").addEventListener("click", openLogin);
+}
+
+if ($("closeLogin")) {
+  $("closeLogin").addEventListener("click", closeLogin);
+}
+
+if ($("continueGuest")) {
+  $("continueGuest").addEventListener("click", () => {
+    closeLogin();
+    toast("आप Guest के रूप में जारी हैं।");
+  });
+}
+
+if ($("demoLogin")) {
+  $("demoLogin").addEventListener("click", () => {
+    const email = getValue("loginEmail");
+
+    if (!email || !email.includes("@")) {
+      toast("कृपया सही ईमेल लिखें।");
+      return;
+    }
+
+    closeLogin();
+    toast("Demo mode: कोई अकाउंट नहीं बनाया गया।");
+  });
+}
+
+if (loginModal) {
+  loginModal.addEventListener("click", event => {
+    if (event.target === loginModal) closeLogin();
+  });
+
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape") closeLogin();
+  });
+}
+
+/* SHOW LOGIN ONCE PER TAB SESSION */
+try {
+  if (!sessionStorage.getItem("piyushAIWelcomeShown")) {
+    setTimeout(() => {
+      if (!sessionStorage.getItem("piyushAIWelcomeShown")) {
+        openLogin();
+        sessionStorage.setItem("piyushAIWelcomeShown", "yes");
+      }
+    }, 10000);
+  }
+} catch (error) {
+  /* Login still works using the button. */
+}
+
+/* FOOTER YEAR */
+setText("year", new Date().getFullYear());
+
+/* QUICK ACCESS: ENTER TO SUBMIT CHAT */
+if ($("chatInput")) {
+  $("chatInput").addEventListener("keydown", event => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      if ($("chatForm")) $("chatForm").requestSubmit();
+    }
+  });
+}
+
+/* INITIALIZE */
+showSlide(0);
+openTool("script", false);
+
+console.log("Piyush AI World initialized successfully.");
+</script>
+</body>
+</html>
